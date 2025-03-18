@@ -125,7 +125,7 @@
 
 <div class="container">
     <div class="header">Multiple Calculators</div>
-<button class="btn-toggle" onclick="toggleDarkMode()">Dark Mode</button>
+<button class="btn btn-dark w-100 my-3" onclick="toggleDarkMode()">Dark Mode</button>
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#mic">MIC</a></li>
@@ -199,11 +199,10 @@ function toggleDarkMode() {
 }
 
 // Clear Results when switching calculators
-function clearResults() {
-    const results = document.querySelectorAll('.result');
-    results.forEach(result => result.innerHTML = '');
-}
 
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', clearResults);
+});
 
         
     // Age Calculator
