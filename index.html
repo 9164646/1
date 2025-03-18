@@ -227,27 +227,7 @@ function calculateMonthlyInterest() {
 
     document.getElementById("micResult").innerHTML = `Principal: ₹${principal.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
 }
-        //  Interest Calculator
-function calculateMonthlyInterest() {
-    let principal = parseFloat(document.getElementById("principalMic").value);
-    let rate = parseFloat(document.getElementById("rateMic").value);
-    let fromDate = new Date(document.getElementById("fromDate").value);
-    let toDate = new Date(document.getElementById("toDate").value);
-
-    if (isNaN(principal) || isNaN(rate) || fromDate == "Invalid Date" || toDate == "Invalid Date") {
-        document.getElementById("micResult").innerText = "Please enter valid values.";
-        return;
-    }
-
-    let diffTime = toDate - fromDate;
-    let diffDays = diffTime / (1000 * 3600 * 24);
-    let months = diffDays / 30;
-    let interest = (principal * rate * months) / 100;
-    let totalAmount = principal + interest;
-
-    document.getElementById("micResult").innerHTML = `Principal: ₹${principal.toFixed(2)}<br>Interest: ₹${interest.toFixed(2)}<br>Total Amount: ₹${totalAmount.toFixed(2)}`;
-}
-
+        
 // BMI Calculator
 function calculateBMI() {
     let weight = parseFloat(document.getElementById("weight").value);
@@ -261,10 +241,11 @@ function calculateBMI() {
     let bmi = weight / (height * height);
     let category = "";
 
-    if (bmi < 18.5) category = "Underweit";
-    else if (bmi < 24.9) category = "Normal weight";
-    else if (bmi < 29.9) category = "Overweight";
-    else category = "Obese";
+    if (bmi < 18.5) category = "Underweight";
+else if (bmi < 24.9) category = "Normal weight";
+else if (bmi < 29.9) category = "Overweight";
+else category = "Obese";
+
 
     document.getElementById("bmiResult").innerText = `BMI: ${bmi.toFixed(2)} (${category})`;
 }
