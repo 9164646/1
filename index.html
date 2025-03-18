@@ -144,12 +144,14 @@
         <div id="age" class="tab-pane fade show active">
             <h2>Age Calculator</h2>
             <form id="ageForm" class="needs-validation" novalidate>
-                <input type="date" id="dob" required>
-                <button class="btn-calculate" type="button" onclick="calculateAge()">Calculate</button>
-               
-<button class="btn-reset" type="button" onclick="resetForm('ageForm')">Reset</button>
-                <div class="result" id="ageResult" aria-live="polite"></div>
-            </form>
+    <input type="date" id="dob" required>
+    <div class="invalid-feedback">Please enter a valid date of birth.</div>
+    
+    <button class="btn-calculate" type="button" onclick="calculateAge()">Calculate</button>
+    <button class="btn-reset" type="button" onclick="resetForm('ageForm')">Reset</button>
+    
+    <div class="result" id="ageResult" aria-live="polite"></div>
+</form>
         </div>
 
         <!-- Monthly Interest Calculator -->
@@ -210,21 +212,39 @@
 
     <script>
      // Dark Mode Toggle
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
 
-    // Reset Form Function
-    function resetForm(formId) {
-        document.getElementById(formId).reset();
-        clearResults();
-    }
+// Reset Form Function
+function resetForm(formId) {
+    const form = document.getElementById(formId);
+    form.reset();
+    clearResults();
+    form.classList.remove('was-validated');
+}
 
-    // Clear Results
-    function clearResults() {
-        const results = document.querySelectorAll('.result');
-        results.forEach(result => result.innerHTML = '');
-    }
+// Clear Results Function
+function clearResults() {
+    const results = document.querySelectorAll('.result');
+    results.forEach(result => result.innerHTML = '');
+}
+
+// Bootstrap Validation Feedback
+(() => {
+    'use strict';
+    const forms = document.querySelectorAll('.needs-validation');
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', (event) => {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+        }, false);
+    });
+})();
+
         // Age Calculator with optimized date handling
     function calculateAge() {
         let dob = document.getElementById("dob").value;
