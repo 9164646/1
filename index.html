@@ -82,10 +82,6 @@
             border-color: #0056b3;
         }
 
-        <input type="date" id="dob" aria-label="Enter Date of Birth" required>
-<input type="number" id="weight" aria-label="Enter Weight in kg" placeholder="Enter Weight (kg)" required>
-<input type="number" id="height" aria-label="Enter Height in cm" placeholder="Enter Height (cm)" required>
-
 
         /* Dark Mode */
 .dark-mode {
@@ -129,7 +125,7 @@
 
 <div class="container">
     <div class="header">Multiple Calculators</div>
-<button class="btn-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+<button class="btn-toggle" onclick="toggleDarkMode()">Dark Mode</button>
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#mic">MIC</a></li>
@@ -142,7 +138,8 @@
         <!-- Age Calculator -->
         <div id="age" class="tab-pane fade show active">
             <h2>Age Calculator</h2>
-            <input type="date" id="dob">
+          
+            <input type="date" id="dob" aria-label="Enter Date of Birth" required>
             <button class="btn-calculate" onclick="calculateAge()">Calculate</button>
             <div class="result" id="ageResult"></div>
         </div>
@@ -161,8 +158,8 @@
         <!-- BMI Calculator -->
         <div id="bmi" class="tab-pane fade">
             <h2>BMI Calculator</h2>
-            <input type="number" id="weight" placeholder="Enter Weight (kg)">
-            <input type="number" id="height" placeholder="Enter Height (cm)">
+            <input type="number" id="weight" aria-label="Enter Weight in kg" placeholder="Enter Weight (kg)" required>
+<input type="number" id="height" aria-label="Enter Height in cm" placeholder="Enter Height (cm)" required>
             <button class="btn-calculate" onclick="calculateBMI()">Calculate</button>
             <div class="result" id="bmiResult"></div>
         </div>
