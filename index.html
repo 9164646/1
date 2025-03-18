@@ -94,6 +94,11 @@
     color: #ffffff;
     border-color: #007bff;
 }
+.dark-mode .result {
+    background: #2c2c2c;
+    color: #ffffff;
+    border-color: #007bff;
+}
 
       
         
@@ -150,7 +155,9 @@
             <h2>Monthly Interest Calculator</h2>
             <input type="number" id="principalMic" placeholder="Enter Principal Amount">
             <input type="number" id="rateMic" placeholder="Enter Monthly Interest Rate">
-            <input type="date" id="fromdate">
+           
+            <input type="date" id="fromDate">
+
             <input type="date" id="toDate">
             <button class="btn-calculate" onclick="calculateMonthlyInterest()">Calculate</button>
             <div class="result" id="micResult"></div>
