@@ -199,7 +199,10 @@ function toggleDarkMode() {
 }
 
 // Clear Results when switching calculators
-
+function clearResults() {
+    const results = document.querySelectorAll('.result');
+    results.forEach(result => result.innerHTML = '');
+}
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', clearResults);
 });
