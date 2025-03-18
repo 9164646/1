@@ -82,6 +82,23 @@
             border-color: #0056b3;
         }
 
+        <input type="date" id="dob" aria-label="Enter Date of Birth" required>
+<input type="number" id="weight" aria-label="Enter Weight in kg" placeholder="Enter Weight (kg)" required>
+<input type="number" id="height" aria-label="Enter Height in cm" placeholder="Enter Height (cm)" required>
+
+
+        /* Dark Mode */
+.dark-mode {
+    background: #121212;
+    color: #ffffff;
+}
+
+.dark-mode .container {
+    background: #1e1e1e;
+    color: #ffffff;
+    border-color: #007bff;
+}
+
       
         
         .result {
@@ -180,15 +197,16 @@
 
     <script>
      // Dark Mode Toggle
-    function toggleDarkMode() {
-        document.body.classList.toggle('dark-mode');
-    }
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
 
-    // Clear Results when switching calculators
-    function clearResults() {
-        const results = document.querySelectorAll('.result');
-        results.forEach(result => result.innerHTML = '');
-    }
+// Clear Results when switching calculators
+function clearResults() {
+    const results = document.querySelectorAll('.result');
+    results.forEach(result => result.innerHTML = '');
+}
+
 
         
     // Age Calculator
