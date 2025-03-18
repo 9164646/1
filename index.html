@@ -146,6 +146,8 @@
             <form id="ageForm" class="needs-validation" novalidate>
                 <input type="date" id="dob" required>
                 <button class="btn-calculate" type="button" onclick="calculateAge()">Calculate</button>
+               
+<button class="btn-reset" type="button" onclick="resetForm('ageForm')">Reset</button>
                 <div class="result" id="ageResult" aria-live="polite"></div>
             </form>
         </div>
@@ -160,6 +162,8 @@
 
             <input type="date" id="toDate">
             <button class="btn-calculate" onclick="calculateMonthlyInterest()">Calculate</button>
+           <button class="btn-reset" type="button" onclick="resetForm('Monthly interestForm')">Reset</button>
+
             <div class="result" id="micResult"></div>
         </div>
 
@@ -169,6 +173,8 @@
             <input type="number" id="weight" aria-label="Enter Weight in kg" placeholder="Enter Weight (kg)" required>
 <input type="number" id="height" aria-label="Enter Height in cm" placeholder="Enter Height (cm)" required>
             <button class="btn-calculate" onclick="calculateBMI()">Calculate</button>
+            <button class="btn-reset" type="button" onclick="resetForm('bmiForm')">Reset</button>
+
             <div class="result" id="bmiResult"></div>
         </div>
 
@@ -182,6 +188,7 @@
             <input type="number" id="months" placeholder="Months">
             <input type="number" id="days" placeholder="Days">
             <button class="btn-calculate" onclick="calculateInterest()">Calculate</button>
+            <button class="btn-reset" type="button" onclick="resetForm('interestForm')">Reset</button>
             <div class="result" id="interestResult"></div>
         </div>
  
@@ -193,6 +200,7 @@
             <input type="number" id="loanRate" placeholder="Enter Interest Rate">
             <input type="number" id="loanTenure" placeholder="Enter Tenure (Months)">
             <button class="btn-calculate" onclick="calculateEMI()">Calculate</button>
+            <button class="btn-reset" type="button" onclick="resetForm('EMIForm')">Reset</button>
             <div class="result" id="emiResult"></div>
         </div>
     </div>
@@ -202,33 +210,21 @@
 
     <script>
      // Dark Mode Toggle
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-}
-// Bootstrap Form Validation
-    (() => {
-        'use strict';
-        const forms = document.querySelectorAll('.needs-validation');
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
 
-        Array.from(forms).forEach(form => {
-            form.addEventListener('submit', event => {
-                if (!form.checkValidity()) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                }
-                form.classList.add('was-validated');
-            }, false);
-        });
-    })();
-// Clear Results when switching calculators
-function clearResults() {
-    const results = document.querySelectorAll('.result');
-    results.forEach(result => result.innerHTML = '');
-}
-document.querySelectorAll('.nav-link').forEach(link => {
-    link.addEventListener('click', clearResults);
-});
+    // Reset Form Function
+    function resetForm(formId) {
+        document.getElementById(formId).reset();
+        clearResults();
+    }
 
+    // Clear Results
+    function clearResults() {
+        const results = document.querySelectorAll('.result');
+        results.forEach(result => result.innerHTML = '');
+    }
         // Age Calculator with optimized date handling
     function calculateAge() {
         let dob = document.getElementById("dob").value;
