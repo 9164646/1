@@ -135,13 +135,14 @@
     </ul>
 
     <div class="tab-content pt-4">
-        <!-- Age Calculator -->
+       <!-- Age Calculator -->
         <div id="age" class="tab-pane fade show active">
             <h2>Age Calculator</h2>
-          
-            <input type="date" id="dob" aria-label="Enter Date of Birth" required>
-            <button class="btn-calculate" onclick="calculateAge()">Calculate</button>
-            <div class="result" id="ageResult"></div>
+            <form id="ageForm" class="needs-validation" novalidate>
+                <input type="date" id="dob" required>
+                <button class="btn-calculate" type="button" onclick="calculateAge()">Calculate</button>
+                <div class="result" id="ageResult" aria-live="polite"></div>
+            </form>
         </div>
 
         <!-- Monthly Interest Calculator -->
@@ -149,7 +150,7 @@
             <h2>Monthly Interest Calculator</h2>
             <input type="number" id="principalMic" placeholder="Enter Principal Amount">
             <input type="number" id="rateMic" placeholder="Enter Monthly Interest Rate">
-            <input type="date" id="fromDate">
+            <input type="date" id="from date">
             <input type="date" id="toDate">
             <button class="btn-calculate" onclick="calculateMonthlyInterest()">Calculate</button>
             <div class="result" id="micResult"></div>
@@ -197,7 +198,21 @@
 function toggleDarkMode() {
     document.body.classList.toggle('dark-mode');
 }
+// Bootstrap Form Validation
+    (() => {
+        'use strict';
+        const forms = document.querySelectorAll('.needs-validation');
 
+        Array.from(forms).forEach(form => {
+            form.addEventListener('submit', event => {
+                if (!form.checkValidity()) {
+                    event.preventDefault();
+                    event.stopPropagation();
+                }
+                form.classList.add('was-validated');
+            }, false);
+        });
+    })();
 // Clear Results when switching calculators
 function clearResults() {
     const results = document.querySelectorAll('.result');
@@ -207,10 +222,8 @@ document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', clearResults);
 });
 
-        
-    // Age Calculator
-
-        function calculateAge() {
+        // Age Calculator with optimized date handling
+    function calculateAge() {
         let dob = document.getElementById("dob").value;
         if (!dob) {
             document.getElementById("ageResult").innerText = "Please enter a valid date.";
@@ -219,23 +232,16 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
         let birthDate = new Date(dob);
         let today = new Date();
+        let ageInMillis = today.getTime() - birthDate.getTime();
 
-        let years = today.getFullYear() - birthDate.getFullYear();
-        let months = today.getMonth() - birthDate.getMonth();
-        let days = today.getDate() - birthDate.getDate();
-
-        // Adjust months and years if needed
-        if (days < 0) {
-            months--;
-            days += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
-        }
-        if (months < 0) {
-            years--;
-            months += 12;
-        }
+        let ageDate = new Date(ageInMillis);
+        let years = ageDate.getUTCFullYear() - 1970;
+        let months = ageDate.getUTCMonth();
+        let days = ageDate.getUTCDate() - 1;
 
         document.getElementById("ageResult").innerText = `You are ${years} years, ${months} months, and ${days} days old.`;
     }
+
    
 
 // Monthly Interest Calculator
