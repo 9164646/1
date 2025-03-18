@@ -82,6 +82,8 @@
             border-color: #0056b3;
         }
 
+      
+        
         .result {
             background: #e9f2ff;
             padding: 15px;
@@ -110,7 +112,7 @@
 
 <div class="container">
     <div class="header">Multiple Calculators</div>
-
+<button class="btn-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
     <ul class="nav nav-pills nav-justified">
         <li class="nav-item"><a class="nav-link active" data-bs-toggle="pill" href="#age">Age</a></li>
         <li class="nav-item"><a class="nav-link" data-bs-toggle="pill" href="#mic">MIC</a></li>
@@ -177,6 +179,18 @@
 <div class="footer">© 2025 Multiple Calculators | Made with ❤️ by Calculator.in</div>
 
     <script>
+     // Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+    }
+
+    // Clear Results when switching calculators
+    function clearResults() {
+        const results = document.querySelectorAll('.result');
+        results.forEach(result => result.innerHTML = '');
+    }
+
+        
     // Age Calculator
 
         function calculateAge() {
